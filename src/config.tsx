@@ -1,0 +1,343 @@
+import { Icons } from '@/components/icons'
+import type { JSX } from 'react'
+
+type Config = {
+    name: string
+    avatar: string
+    title: string
+    githubUsername: string
+    siteUrl: string
+    resumeUrl?: string
+    socials: {
+        name: string
+        url: string
+        icon: keyof typeof Icons
+    }[]
+    calendarLink?: string
+    description: string | JSX.Element
+    descriptionRaw: string
+    projects: {
+        name: string
+        icon?: keyof typeof Icons
+        imageClasses?: string
+        image?: string
+        description: string
+        url: string
+        tags: {
+            name: string
+            icon?: keyof typeof Icons
+        }[]
+        github?: string
+        featured: boolean
+        testimonial?: string
+        /** Short labels shown as badges next to the project name (e.g. usage stats). */
+        nameBadges?: string[]
+    }[]
+    openSource?: {
+        description?: string
+        projects?: {
+            repository: string
+            description: string | JSX.Element
+            title: string
+            link: string
+        }[]
+    }
+    education?: {
+        institution: string
+        institutionUrl?: string
+        programs: {
+            title: string
+            durationYears: number
+            period: string
+            description: string
+        }[]
+    }
+}
+
+export const CONFIG: Config = {
+    name: 'Mohammad Noman',
+    avatar: '/images/author.jpeg',
+    title: 'Software Developer',
+    githubUsername: 'stormynight9',
+    siteUrl: 'https://nader.run/',
+    resumeUrl: '/resume.pdf',
+    socials: [
+        {
+            name: 'GitHub',
+            url: 'https://github.com/stormynight9',
+            icon: 'github',
+        },
+        {
+            name: 'LinkedIn',
+            url: 'https://www.linkedin.com/in/nader-ferjani/',
+            icon: 'linkedin',
+        },
+        {
+            name: 'X',
+            url: 'https://x.com/Naderferjani',
+            icon: 'x',
+        },
+        {
+            name: 'Upwork',
+            url: 'https://www.upwork.com/freelancers/~0108a6d64ff5b64440',
+            icon: 'upwork',
+        },
+        {
+            name: 'ferjani.nader@hotmail.fr',
+            url: 'mailto:ferjani.nader@hotmail.fr',
+            icon: 'email',
+        },
+    ],
+    calendarLink: 'https://cal.com/naderferjani/15',
+    description: (
+        <>
+            <p>
+                Hi, I&apos;m <span className='text-purple-400 font-semibold'>Noman</span>. I work part-time as a full-stack developer
+                at{' '}
+                <a
+                    href='https://hi-interns.com/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-foreground decoration-muted-foreground font-medium whitespace-nowrap underline underline-offset-2'
+                >
+                    Hi Interns
+                    <Icons.arrowUpRight className='inline-block size-4' />
+                </a>
+                , shipping product with Next.js, Astro, React, and Tailwind at
+                scale. I always try to find what&apos;s stopping users from
+                converting, and keep developer experience in good shape while we
+                iterate.
+            </p>
+            <p>
+                I&apos;ve freelanced on{' '}
+                <a
+                    href='https://www.upwork.com/freelancers/~0108a6d64ff5b64440'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-foreground decoration-muted-foreground font-medium whitespace-nowrap underline underline-offset-2'
+                >
+                    Upwork
+                    <Icons.arrowUpRight className='inline-block size-4' />
+                </a>{' '}
+                for about four years, with a 100% job success rate and five-star
+                reviews. Several clients from year one still ping me for work. I
+                lean on AI a lot for speed and drafts, but architecture, edge
+                cases, and actually shipping still land on me.
+            </p>
+        </>
+    ),
+    descriptionRaw: `Full-stack developer. Part-time at Hi Interns (Next.js, Astro, Tailwind). Focus on conversion blockers and solid DX. Upwork: 100% job success, five-star reviews, ~4 years. Pragmatic about AI; owns the hard parts.`,
+    projects: [
+        {
+            name: 'Hi Interns',
+            image: '/images/hi-interns.png',
+            nameBadges: ['+15k accounts'],
+            description:
+                'Connects students, employers, and schools around internships, apprenticeships, and first jobs, and includes an ATS-friendly CV builder, AI assistance through Hi Agent, mobility prep, and career consultants.',
+            url: 'https://hi-interns.com/',
+            tags: [
+                { name: 'Next.js', icon: 'next' },
+                { name: 'Supabase' },
+                { name: 'Posthog' },
+                { name: 'Payload CMS' },
+                { name: 'TypeScript', icon: 'typescript' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'shadcn/ui', icon: 'shadcn' },
+                { name: 'Algolia', icon: 'algolia' },
+            ],
+            featured: true,
+        },
+        {
+            name: 'Stormio',
+            image: '/images/stormio.png',
+            nameBadges: ['+6k players / month'],
+            description:
+                'Taboo-style word guessing on Discord: one player gives clues, the rest guess the word without saying the taboo terms.',
+            url: 'https://stormio.app/',
+            tags: [
+                { name: 'Next.js', icon: 'next' },
+                { name: 'Discord.js' },
+                { name: 'Convex' },
+                { name: 'Posthog' },
+                { name: 'TypeScript', icon: 'typescript' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'shadcn/ui', icon: 'shadcn' },
+            ],
+            featured: true,
+        },
+        {
+            name: 'Shadcn Blocks',
+            icon: 'shadcnblocks',
+            nameBadges: ['+300 blocks'],
+            description:
+                'A library of copy-paste UI blocks for shadcn/ui. I contributed 300+ sections and components to the project.',
+            url: 'https://shadcnblocks.com/',
+            tags: [
+                { name: 'Next.js', icon: 'next' },
+                { name: 'TypeScript', icon: 'typescript' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'shadcn/ui', icon: 'shadcn' },
+            ],
+            featured: true,
+        },
+
+        {
+            name: 'Cosmic Coop',
+            image: '/images/cosmic-coop.webp',
+            description:
+                'A website that provides information about the Cosmic Coop game.',
+            url: 'https://cosmiccoop.net/',
+            tags: [
+                { name: 'Astro', icon: 'astro' },
+                { name: 'Preact', icon: 'preact' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+            ],
+            featured: false,
+            testimonial:
+                'Nader was absolutely amazing with the work he did for me. He truly went above and beyond and was super clear, efficient, and very knowledgeable. He thought about pretty much everything related to the project and even thought outside the box to create solutions to any issues. Truly a 10/10 hire. One of my best hired on Upwork. Will definitely be rehiring on future projects.',
+        },
+        {
+            name: 'SaaSStellar',
+            icon: 'saasStellar',
+            description:
+                'A modern SaaS landing page template with 12 themes, designed to collect emails for a waitlist.',
+            url: 'https://saasstellar.nader.run/',
+            tags: [
+                { name: 'Remix', icon: 'remix' },
+                { name: 'TypeScript', icon: 'typescript' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'shadcn/ui', icon: 'shadcn' },
+            ],
+            featured: false,
+            github: 'https://github.com/stormynight9/saasstellar',
+        },
+        {
+            name: 'Firstplace.run',
+            image: '/images/firstplace.png',
+            imageClasses: 'invert',
+            description:
+                'Turns Google Search Console data into animated bar chart races. Watch queries, pages, countries, or devices compete over time, spot anomalies, and export frames or videos to share.',
+            url: 'https://firstplace.run/',
+            tags: [
+                { name: 'Next.js', icon: 'next' },
+                { name: 'TypeScript', icon: 'typescript' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'shadcn/ui', icon: 'shadcn' },
+                { name: 'Google Search Console' },
+            ],
+            featured: true,
+        },
+        {
+            name: 'Purng',
+            icon: 'purng',
+            description:
+                'A progressive daily pushup challenge that increases throughout the year. Track your progress and join others in building strength consistently.',
+            url: 'https://purng.nader.run/',
+            tags: [
+                { name: 'Next.js', icon: 'next' },
+                { name: 'TypeScript', icon: 'typescript' },
+                { name: 'Convex' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'shadcn/ui', icon: 'shadcn' },
+                { name: 'Drizzle', icon: 'drizzle' },
+            ],
+            featured: true,
+            github: 'https://github.com/stormynight9/purng',
+        },
+        // {
+        //     name: 'gson-image-labelizer',
+        //     icon: 'gsonImageLabelizer',
+        //     description:
+        //         'A tool that helps you label images and save them in local storage.',
+        //     url: 'https://gson.nader.run/',
+        //     tags: [
+        //         { name: 'Next.js', icon: 'next' },
+        //         { name: 'TypeScript', icon: 'typescript' },
+        //         { name: 'Tailwind CSS', icon: 'tailwindcss' },
+        //         { name: 'shadcn/ui', icon: 'shadcn' },
+        //     ],
+        //     featured: false,
+        //     github: 'https://github.com/stormynight9/gson-image-labelizer',
+        // },
+        {
+            name: 'Ranmovanigen',
+            image: '/images/ranmovanigen.png',
+            description:
+                'A Website that uses Anilist API to generate a random anime movie and show its information and trailer.',
+            url: 'https://ranmovanigen.web.app/',
+            featured: false,
+            tags: [
+                { name: 'React', icon: 'react' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'GraphQL', icon: 'graphQL' },
+            ],
+            github: 'https://github.com/stormynight9/random-anime-movie-generator',
+        },
+    ],
+    education: {
+        institution:
+            'Higher Institute of Informatics and Mathematics of Monastir (ISIMM)',
+        institutionUrl: 'https://isimm.rnu.tn/public/',
+        programs: [
+            {
+                title: "Bachelor's in Computer Science",
+                durationYears: 3,
+                period: '2019–2022',
+                description:
+                    'Core computer science fundamentals including programming, algorithms, and systems.',
+            },
+            {
+                title: 'Software Engineering',
+                durationYears: 3,
+                period: '2022–2025',
+                description:
+                    'Software design, architecture, lifecycle, and engineering practices for building reliable systems.',
+            },
+        ],
+    },
+    openSource: {
+        description:
+            'I have contributed to various open-source projects, including Astro, TailwindCSS, shadcn/ui, and more. I also made a few open-source projects that did benefit the community.',
+        projects: [
+            {
+                repository: 'stormynight9/clerk-shadcn-theme',
+                description: (
+                    <>
+                        A theme for Clerk components that syncs with any
+                        shadcn/ui configuration. Got excited when I had my first{' '}
+                        <a
+                            href='https://github.com/stormynight9/clerk-shadcn-theme/issues?q='
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='deco text-foreground decoration-muted-foreground font-medium whitespace-nowrap underline underline-offset-2'
+                        >
+                            issue
+                            <Icons.arrowUpRight className='inline-block size-4' />
+                        </a>{' '}
+                        and{' '}
+                        <a
+                            href='https://github.com/stormynight9/clerk-shadcn-theme/pulls?q='
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='deco text-foreground decoration-muted-foreground font-medium whitespace-nowrap underline underline-offset-2'
+                        >
+                            PR
+                            <Icons.arrowUpRight className='inline-block size-4' />
+                        </a>{' '}
+                        from the community!
+                    </>
+                ),
+
+                title: 'clerk-shadcn-theme',
+                link: 'https://www.github.com/stormynight9/clerk-shadcn-theme',
+            },
+            {
+                repository: 'stormynight9/saasstellar',
+                description:
+                    'A modern SaaS landing page template with 12 themes, designed to collect emails for a waitlist. I made this when Linear-like websites were trending so I made one too.',
+                title: 'SaaSStellar',
+                link: 'https://www.github.com/stormynight9/saasstellar',
+            },
+        ],
+    },
+}
