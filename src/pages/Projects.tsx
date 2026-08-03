@@ -14,7 +14,7 @@ import React from 'react'
 
 const Projects = () => {
     return (
-        <div className='flex flex-col gap-12'>
+        <div className='flex flex-col gap-8 pt-20 sm:pt-24'>
             <div className='animate-slide-from-down-and-fade-1 flex items-start justify-between'>
                 <Breadcrumb className='px-4'>
                     <BreadcrumbList>
@@ -40,6 +40,7 @@ const Projects = () => {
                             name={project.name}
                             icon={project.icon}
                             imageClasses={project.imageClasses}
+                            shortDescription={project.shortDescription}
                             description={project.description}
                             image={project.image}
                             url={project.url}

@@ -163,3 +163,141 @@
         line-height: 1.25;
     }
 }
+
+/* -------------------------------------------------------------------------- */
+/* 3D Keycap Mechanical Keyboard Styling                                      */
+/* -------------------------------------------------------------------------- */
+
+.keycap-3d {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #282828, #202020);
+  box-shadow:
+    inset -8px 0 8px rgba(0, 0, 0, 0.15),
+    inset 0 -8px 8px rgba(0, 0, 0, 0.25),
+    0 0 0 2px rgba(0, 0, 0, 0.75),
+    10px 20px 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition:
+    transform 0.1s ease-in-out,
+    box-shadow 0.1s ease-in,
+    background 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.keycap-3d::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  bottom: 14px;
+  right: 12px;
+  background: linear-gradient(90deg, #232323, #4a4a4a);
+  border-radius: 10px;
+  box-shadow:
+    -10px -10px 10px rgba(255, 255, 255, 0.25),
+    10px 5px 10px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid rgba(0, 0, 0, 0.27);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.27);
+  border-top: 1px solid rgba(0, 0, 0, 0.56);
+  transition: all 0.1s ease-in-out;
+  pointer-events: none;
+}
+
+.keycap-3d:active,
+.keycap-3d.is-pressed {
+  transform: translateY(2px);
+  box-shadow:
+    inset -4px 0 4px rgba(0, 0, 0, 0.1),
+    inset 0 -4px 4px rgba(0, 0, 0, 0.15),
+    0 0 0 2px rgba(0, 0, 0, 0.5),
+    5px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.keycap-3d:active::before,
+.keycap-3d.is-pressed::before {
+  top: 5px;
+  left: 5px;
+  bottom: 11px;
+  right: 11px;
+  box-shadow:
+    -5px -5px 5px rgba(255, 255, 255, 0.15),
+    5px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.keycap-3d:active .keycap-content,
+.keycap-3d.is-pressed .keycap-content {
+  transform: translateY(1px);
+}
+
+/* Active / Hover Glow state */
+.keycap-3d.is-active {
+  background: linear-gradient(180deg, #323545, #222533);
+  box-shadow:
+    inset -8px 0 8px rgba(0, 0, 0, 0.15),
+    inset 0 -8px 8px rgba(0, 0, 0, 0.25),
+    0 0 0 2px var(--key-glow, rgba(255, 255, 255, 0.6)),
+    0 0 22px var(--key-glow-shadow, rgba(255, 255, 255, 0.4));
+}
+
+.keycap-3d.is-active::before {
+  background: linear-gradient(90deg, #2e3248, #5a6382);
+  box-shadow:
+    -10px -10px 10px rgba(255, 255, 255, 0.35),
+    10px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Post-Preloader Site Loading & Entrance Reveal Animations                   */
+/* -------------------------------------------------------------------------- */
+
+@keyframes top-loader-bar {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  70% {
+    width: 85%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+.top-loader-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #a855f7, #6366f1, #ec4899, #a855f7);
+  background-size: 200% 100%;
+  z-index: 99999;
+  pointer-events: none;
+  animation: top-loader-bar 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.8), 0 0 24px rgba(99, 102, 241, 0.5);
+}
+
+@keyframes site-reveal-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-site-reveal {
+  animation: site-reveal-fade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+

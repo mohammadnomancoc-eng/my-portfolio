@@ -14,6 +14,7 @@ type Config = {
         icon: keyof typeof Icons
     }[]
     calendarLink?: string
+    googleAppsScriptUrl?: string
     description: string | JSX.Element
     descriptionRaw: string
     projects: {
@@ -21,6 +22,7 @@ type Config = {
         icon?: keyof typeof Icons
         imageClasses?: string
         image?: string
+        shortDescription?: string
         description: string
         url: string
         tags: {
@@ -33,58 +35,61 @@ type Config = {
         /** Short labels shown as badges next to the project name (e.g. usage stats). */
         nameBadges?: string[]
     }[]
-    openSource?: {
-        description?: string
-        projects?: {
-            repository: string
-            description: string | JSX.Element
-            title: string
-            link: string
-        }[]
-    }
     education?: {
+        level: string
         institution: string
         institutionUrl?: string
-        programs: {
-            title: string
-            durationYears: number
-            period: string
-            description: string
+        title: string
+        period: string
+        description: string
+    }[]
+    experiences?: {
+        company: string
+        companyUrl?: string
+        logo?: string
+        companyTitleImage?: string
+        icon?: keyof typeof Icons
+        logoClasses?: string
+        shortDescription?: string
+        status?: string
+        role: string
+        period: string
+        stats?: {
+            value: string
+            label: string
         }[]
-    }
+        skills?: string[]
+        bullets: string[]
+    }[]
 }
 
 export const CONFIG: Config = {
     name: 'Mohammad Noman',
     avatar: '/images/author.jpeg',
     title: 'Software Developer',
-    githubUsername: 'stormynight9',
+    githubUsername: 'mohammadnomancoc-eng',
     siteUrl: 'https://nader.run/',
     resumeUrl: '/resume.pdf',
+    googleAppsScriptUrl: import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || '',
     socials: [
         {
-            name: 'GitHub',
-            url: 'https://github.com/stormynight9',
-            icon: 'github',
-        },
-        {
             name: 'LinkedIn',
-            url: 'https://www.linkedin.com/in/nader-ferjani/',
+            url: 'https://www.linkedin.com/in/mohammad-noman-23b0a4324/',
             icon: 'linkedin',
         },
         {
-            name: 'X',
-            url: 'https://x.com/Naderferjani',
-            icon: 'x',
+            name: 'GitHub',
+            url: 'https://github.com/mohammadnomancoc-eng',
+            icon: 'github',
         },
         {
-            name: 'Upwork',
-            url: 'https://www.upwork.com/freelancers/~0108a6d64ff5b64440',
-            icon: 'upwork',
+            name: 'Instagram',
+            url: 'https://www.instagram.com/_noman_khan_23_/',
+            icon: 'x', // fallback icon identifier
         },
         {
-            name: 'ferjani.nader@hotmail.fr',
-            url: 'mailto:ferjani.nader@hotmail.fr',
+            name: 'Email',
+            url: 'mailto:mohammadnomancoc@gmail.com',
             icon: 'email',
         },
     ],
@@ -129,95 +134,99 @@ export const CONFIG: Config = {
     descriptionRaw: `Full-stack developer. Part-time at Hi Interns (Next.js, Astro, Tailwind). Focus on conversion blockers and solid DX. Upwork: 100% job success, five-star reviews, ~4 years. Pragmatic about AI; owns the hard parts.`,
     projects: [
         {
-            name: 'Hi Interns',
-            image: '/images/hi-interns.png',
-            nameBadges: ['+15k accounts'],
+            name: "Alzheimer's Detection AI",
+            image: '/images/alzheimerai.jpg',
+            nameBadges: ['AI/ML Diagnostic Tool'],
             description:
-                'Connects students, employers, and schools around internships, apprenticeships, and first jobs, and includes an ATS-friendly CV builder, AI assistance through Hi Agent, mobility prep, and career consultants.',
-            url: 'https://hi-interns.com/',
+                "An advanced machine learning & deep learning diagnostic system designed to detect and classify early-stage Alzheimer's disease from MRI brain scans with high precision.",
+            url: 'https://alzheimerai.vercel.app/',
+            github: 'https://github.com/mohammadnomancoc-eng/Alzheimers-Detection-Using-ML',
             tags: [
-                { name: 'Next.js', icon: 'next' },
+                { name: 'Python' },
+                { name: 'PyTorch' },
+                { name: 'TensorFlow' },
+                { name: 'React', icon: 'react' },
+                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+            ],
+            featured: true,
+        },
+        {
+            name: 'À Faire - Task & Todo App',
+            image: '/images/afaire.svg',
+            nameBadges: ['Task Management with 100-150 daily users'],
+            description:
+                'A sleek, minimal task management application built to streamline daily workflows, track productivity, and organize tasks with an intuitive interface.',
+            url: 'https://a-faire.vercel.app/',
+            github: 'https://github.com/mohammadnomancoc-eng/-Faire',
+            tags: [
+                { name: 'React', icon: 'react' },
+                { name: 'TypeScript', icon: 'typescript' },
                 { name: 'Supabase' },
-                { name: 'Posthog' },
-                { name: 'Payload CMS' },
-                { name: 'TypeScript', icon: 'typescript' },
-                { name: 'Tailwind CSS', icon: 'tailwindcss' },
-                { name: 'shadcn/ui', icon: 'shadcn' },
-                { name: 'Algolia', icon: 'algolia' },
+                { name: 'Vite' },
             ],
             featured: true,
         },
         {
-            name: 'Stormio',
-            image: '/images/stormio.png',
-            nameBadges: ['+6k players / month'],
+            name: 'Headtrixx',
+            image: '/images/headtrixx.webp',
+            nameBadges: ['E-Commerce Platform 2k-3k daily users'],
             description:
-                'Taboo-style word guessing on Discord: one player gives clues, the rest guess the word without saying the taboo terms.',
-            url: 'https://stormio.app/',
+                'A modern full-stack e-commerce platform built for audio gear and electronics, featuring seamless product browsing, shopping cart management, secure checkout integration, and interactive UI components.',
+            url: 'https://headtrixx.com/',
+            github: 'https://github.com/mohammadnomancoc-eng',
             tags: [
-                { name: 'Next.js', icon: 'next' },
-                { name: 'Discord.js' },
-                { name: 'Convex' },
-                { name: 'Posthog' },
-                { name: 'TypeScript', icon: 'typescript' },
+                { name: 'React', icon: 'react' },
+                { name: 'Node.js' },
+                { name: 'Express' },
+                { name: 'MongoDB' },
                 { name: 'Tailwind CSS', icon: 'tailwindcss' },
-                { name: 'shadcn/ui', icon: 'shadcn' },
-            ],
-            featured: true,
-        },
-        {
-            name: 'Shadcn Blocks',
-            icon: 'shadcnblocks',
-            nameBadges: ['+300 blocks'],
-            description:
-                'A library of copy-paste UI blocks for shadcn/ui. I contributed 300+ sections and components to the project.',
-            url: 'https://shadcnblocks.com/',
-            tags: [
-                { name: 'Next.js', icon: 'next' },
-                { name: 'TypeScript', icon: 'typescript' },
-                { name: 'Tailwind CSS', icon: 'tailwindcss' },
-                { name: 'shadcn/ui', icon: 'shadcn' },
             ],
             featured: true,
         },
 
         {
-            name: 'Cosmic Coop',
-            image: '/images/cosmic-coop.webp',
+            name: 'Zootopia - Resort and Restaurant',
+            image: '/images/zootopia.png',
+            nameBadges: ['Luxury Resort & Restaurant Platform'],
             description:
-                'A website that provides information about the Cosmic Coop game.',
-            url: 'https://cosmiccoop.net/',
+                'An engaging, interactive web application featuring rich animations, responsive design, and dynamic content presentation.',
+            url: 'https://zootopiaresortandrestaurant.com/',
+            github: 'https://github.com/mohammadnomancoc-eng',
             tags: [
-                { name: 'Astro', icon: 'astro' },
-                { name: 'Preact', icon: 'preact' },
-                { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                { name: 'React', icon: 'react' },
+                { name: 'JavaScript' },
+                { name: 'CSS3' },
+                { name: 'HTML5' },
             ],
-            featured: false,
-            testimonial:
-                'Nader was absolutely amazing with the work he did for me. He truly went above and beyond and was super clear, efficient, and very knowledgeable. He thought about pretty much everything related to the project and even thought outside the box to create solutions to any issues. Truly a 10/10 hire. One of my best hired on Upwork. Will definitely be rehiring on future projects.',
+            featured: true,
         },
         {
-            name: 'SaaSStellar',
+            name: 'WhereTF',
             icon: 'saasStellar',
+             nameBadges: ['Web Application'],
             description:
-                'A modern SaaS landing page template with 12 themes, designed to collect emails for a waitlist.',
-            url: 'https://saasstellar.nader.run/',
+                'A full-stack real-time Lost & Found platform for college campuses — built with React (Vite), Node.js/Express, MongoDB, Socket.io, and JWT authentication.',
+            url: 'Under construction 😂',
             tags: [
-                { name: 'Remix', icon: 'remix' },
-                { name: 'TypeScript', icon: 'typescript' },
-                { name: 'Tailwind CSS', icon: 'tailwindcss' },
-                { name: 'shadcn/ui', icon: 'shadcn' },
+                { name: 'React', icon: 'react' },
+                { name: 'Node.js'},
+                { name: 'Express'},
+                { name: 'MongoDB'},
+                { name: 'Socket.io'},
+                { name: 'JWT'},
             ],
             featured: false,
-            github: 'https://github.com/stormynight9/saasstellar',
+            github: 'https://github.com/mohammadnomancoc-eng/WhereTF',
         },
         {
-            name: 'Firstplace.run',
+            name: 'EMS - Employee Management System',
             image: '/images/firstplace.png',
             imageClasses: 'invert',
+            nameBadges: ['Web Application'],
             description:
-                'Turns Google Search Console data into animated bar chart races. Watch queries, pages, countries, or devices compete over time, spot anomalies, and export frames or videos to share.',
-            url: 'https://firstplace.run/',
+                'An employee management system built to streamline employee management.',
+            url: 'Under construction 😂',
+            github: 'https://github.com/mohammadnomancoc-eng/EMS-',
             tags: [
                 { name: 'Next.js', icon: 'next' },
                 { name: 'TypeScript', icon: 'typescript' },
@@ -225,14 +234,15 @@ export const CONFIG: Config = {
                 { name: 'shadcn/ui', icon: 'shadcn' },
                 { name: 'Google Search Console' },
             ],
-            featured: true,
+            featured: false,
         },
         {
-            name: 'Purng',
+            name: '🚀 CareerOS — Web App',
             icon: 'purng',
+             nameBadges: ['Open Source Contribution'],
             description:
-                'A progressive daily pushup challenge that increases throughout the year. Track your progress and join others in building strength consistently.',
-            url: 'https://purng.nader.run/',
+                'CareerOS is an open-source AI platform that replaces the 5–8 disconnected tools. Instead of switching between ATS checkers, mock interview platforms, job trackers, and LinkedIn tools — everything lives in one intelligent system that knows your resume, your target role, and your progress.',
+            url: 'It is a OSC project, so no link🥲',
             tags: [
                 { name: 'Next.js', icon: 'next' },
                 { name: 'TypeScript', icon: 'typescript' },
@@ -241,103 +251,73 @@ export const CONFIG: Config = {
                 { name: 'shadcn/ui', icon: 'shadcn' },
                 { name: 'Drizzle', icon: 'drizzle' },
             ],
-            featured: true,
-            github: 'https://github.com/stormynight9/purng',
-        },
-        // {
-        //     name: 'gson-image-labelizer',
-        //     icon: 'gsonImageLabelizer',
-        //     description:
-        //         'A tool that helps you label images and save them in local storage.',
-        //     url: 'https://gson.nader.run/',
-        //     tags: [
-        //         { name: 'Next.js', icon: 'next' },
-        //         { name: 'TypeScript', icon: 'typescript' },
-        //         { name: 'Tailwind CSS', icon: 'tailwindcss' },
-        //         { name: 'shadcn/ui', icon: 'shadcn' },
-        //     ],
-        //     featured: false,
-        //     github: 'https://github.com/stormynight9/gson-image-labelizer',
-        // },
-        {
-            name: 'Ranmovanigen',
-            image: '/images/ranmovanigen.png',
-            description:
-                'A Website that uses Anilist API to generate a random anime movie and show its information and trailer.',
-            url: 'https://ranmovanigen.web.app/',
             featured: false,
-            tags: [
-                { name: 'React', icon: 'react' },
-                { name: 'Tailwind CSS', icon: 'tailwindcss' },
-                { name: 'GraphQL', icon: 'graphQL' },
-            ],
-            github: 'https://github.com/stormynight9/random-anime-movie-generator',
+            github: 'https://github.com/vikash1311/careeros-web',
+        },
+        
+        
+    ],
+    education: [
+        {
+            level: 'College',
+            institution: 'Anjuman college of Engineering and Technology',
+            institutionUrl: 'https://anjumanengg.edu.in/',
+            title: 'B.Tech in Computer Science and Engineering (CSE)',
+            period: '2022–2026',
+            description:
+                'Core computer science fundamentals including programming, algorithms, and systems.',
+        },
+        {
+            level: 'HSC',
+            institution: 'Al-Irfan Secondary School (CBSE)',
+            institutionUrl: '',
+            title: 'Higher Secondary Certificate (HSC)',
+            period: '2020–2022',
+            description:
+                'Higher secondary education focusing on mathematics,physics, chemistry and fundamentals.',
+        },
+        {
+            level: 'SSC',
+            institution: 'St. Vincent Pallotti School (CBSE)',
+            institutionUrl: '',
+            title: 'Secondary School Certificate (SSC)',
+            period: '2019–2020',
+            description:
+                'Secondary education with foundational coursework in mathematics, science, literature',
         },
     ],
-    education: {
-        institution:
-            'Higher Institute of Informatics and Mathematics of Monastir (ISIMM)',
-        institutionUrl: 'https://isimm.rnu.tn/public/',
-        programs: [
-            {
-                title: "Bachelor's in Computer Science",
-                durationYears: 3,
-                period: '2019–2022',
-                description:
-                    'Core computer science fundamentals including programming, algorithms, and systems.',
-            },
-            {
-                title: 'Software Engineering',
-                durationYears: 3,
-                period: '2022–2025',
-                description:
-                    'Software design, architecture, lifecycle, and engineering practices for building reliable systems.',
-            },
-        ],
-    },
-    openSource: {
-        description:
-            'I have contributed to various open-source projects, including Astro, TailwindCSS, shadcn/ui, and more. I also made a few open-source projects that did benefit the community.',
-        projects: [
-            {
-                repository: 'stormynight9/clerk-shadcn-theme',
-                description: (
-                    <>
-                        A theme for Clerk components that syncs with any
-                        shadcn/ui configuration. Got excited when I had my first{' '}
-                        <a
-                            href='https://github.com/stormynight9/clerk-shadcn-theme/issues?q='
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='deco text-foreground decoration-muted-foreground font-medium whitespace-nowrap underline underline-offset-2'
-                        >
-                            issue
-                            <Icons.arrowUpRight className='inline-block size-4' />
-                        </a>{' '}
-                        and{' '}
-                        <a
-                            href='https://github.com/stormynight9/clerk-shadcn-theme/pulls?q='
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='deco text-foreground decoration-muted-foreground font-medium whitespace-nowrap underline underline-offset-2'
-                        >
-                            PR
-                            <Icons.arrowUpRight className='inline-block size-4' />
-                        </a>{' '}
-                        from the community!
-                    </>
-                ),
-
-                title: 'clerk-shadcn-theme',
-                link: 'https://www.github.com/stormynight9/clerk-shadcn-theme',
-            },
-            {
-                repository: 'stormynight9/saasstellar',
-                description:
-                    'A modern SaaS landing page template with 12 themes, designed to collect emails for a waitlist. I made this when Linear-like websites were trending so I made one too.',
-                title: 'SaaSStellar',
-                link: 'https://www.github.com/stormynight9/saasstellar',
-            },
-        ],
-    },
+    experiences: [
+        {
+            company: 'Royals Webtech Pvt. Ltd.',
+            companyUrl: 'https://royalswebtechpvtltd.com/',
+            logo: '/images/royalswebtech.png',
+            companyTitleImage: '/images/royalswebtech_title.png',
+            shortDescription: 'Jr. Software Developer Intern',
+            role: 'Jr. Software Developer Intern',
+            period: 'Dec 2025 – Present',
+            stats: [
+                { value: '10K+', label: 'Users' },
+                { value: '12×', label: 'Login faster' },
+                { value: '12×', label: 'Data fetch' },
+                { value: '5+', label: 'Apps shipped' },
+            ],
+            skills: [
+                'React',
+                'Node.js',
+                'Express',
+                'JavaScript',
+                'MongoDB',
+                'Supabase',
+                'Firebase',
+                'Render',
+            ],
+            bullets: [
+                ' Built and shipped an internal HR platform from scratch — role-based access (Admin/Employee), geofenced attendance, leave/WFH quota management, drag-and-drop ID card designer, and Google Apps Script email notifications. Serving 40+ daily users in active production.',
+                'Built a hair care e-commerce platform from scratch — React + Vite frontend with Cloudinary-powered media pipeline, product pages, skeleton loading states, and a custom hamburger menu with CSS animations; deployed to production on Render.',
+                'Engineered a Watch & Shop video commerce feature — users browse and purchase directly from shoppable video content, adding a conversion-focused discovery channel to the storefront.',
+                'Owned complete analytics and conversion tracking setup for a high-traffic e-commerce client — GTM architecture, Meta Pixel event pipeline, and production debugging with zero downtime.',
+                'Delivered 5+ client projects across logistics, civic tech, and hospitality — React frontends, Node.js/Express backends; direct client communication throughout.',
+            ],
+        },
+    ],
 }

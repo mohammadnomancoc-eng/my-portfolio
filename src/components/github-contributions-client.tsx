@@ -4,6 +4,7 @@ import { ActivityCalendar, type Activity } from 'react-activity-calendar'
 type GitHubContributionsClientProps = {
     data: Activity[]
     year: number | string
+    totalCount?: number
 }
 
 // GitHub dark theme colors
@@ -14,6 +15,7 @@ const gitHubTheme = {
 export const GitHubContributionsClient = ({
     data,
     year,
+    totalCount = 190,
 }: GitHubContributionsClientProps) => {
     const currentYear = year === 'last' ? new Date().getFullYear() : year
 
@@ -23,7 +25,7 @@ export const GitHubContributionsClient = ({
             theme={gitHubTheme}
             colorScheme='dark'
             labels={{
-                totalCount: `{{count}} contributions in ${year === 'last' ? 'the last year' : String(currentYear)}`,
+                totalCount: `${totalCount} contributions in ${year === 'last' ? 'the last year' : String(currentYear)}`,
             }}
             maxLevel={4}
             blockSize={11}

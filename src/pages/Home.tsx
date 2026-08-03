@@ -2,14 +2,16 @@ import GitHubContributions from '@/components/github-contributions'
 import Header from '@/components/header'
 import ResumeButton from '@/components/resume-button'
 import ProjectsButton from '@/components/projects-button'
+import MoreProjectsButton from '@/components/more-projects-button'
 import { Icons } from '@/components/icons'
-import OpenSource from '@/components/open-source'
 import Project from '@/components/project'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { CONFIG } from '@/config'
 import { Link } from 'react-router-dom'
 import React from 'react'
+import Skills from '@/sections/Skills'
+import Experience from '@/components/experience'
 
 /** Centered rule between major homepage blocks (same pattern as between featured projects). */
 function SectionRule() {
@@ -58,6 +60,7 @@ export default function Home() {
                                     name={project.name}
                                     icon={project.icon}
                                     imageClasses={project.imageClasses}
+                                    shortDescription={project.shortDescription}
                                     description={project.description}
                                     image={project.image}
                                     url={project.url}
@@ -71,69 +74,62 @@ export default function Home() {
                                 )}
                             </React.Fragment>
                         ))}
-                    <div className='flex justify-center'>
-                        <Button
-                            asChild
-                            className='text-muted-foreground hover:text-foreground underline'
-                            variant={'link'}
-                        >
-                            <Link to='/projects'>
-                                More projects
-                                <Icons.arrowUpRight />
-                            </Link>
-                        </Button>
+                    <div className='flex justify-center my-4'>
+                        <MoreProjectsButton to='/projects' text='More Projects' />
                     </div>
                 </div>
             </section>
             <SectionRule />
 
-            {CONFIG.education && (
+            <Skills />
+            <SectionRule />
+
+            {CONFIG.education && CONFIG.education.length > 0 && (
                 <>
                     <section id='education' className='scroll-mt-24' aria-labelledby='home-education'>
                         <div className='animate-slide-from-down-and-fade-2 space-y-4 px-4'>
                             <h2 id='home-education'>Education</h2>
-                            <p className='text-muted-foreground max-w-[65ch] leading-relaxed'>
-                                I studied at{' '}
-                                {CONFIG.education.institutionUrl ? (
-                                    <a
-                                        href={CONFIG.education.institutionUrl}
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        className='text-foreground decoration-muted-foreground font-medium underline underline-offset-2'
-                                    >
-                                        {CONFIG.education.institution}
-                                        <Icons.arrowUpRight className='inline-block size-4' />
-                                    </a>
-                                ) : (
-                                    CONFIG.education.institution
-                                )}
-                                .
-                            </p>
-                            <div className='mt-14 flex max-w-[65ch] flex-col gap-7'>
-                                {CONFIG.education.programs.map(
-                                    (p, idx, array) => (
-                                        <React.Fragment
-                                            key={`${p.title}-${p.period}`}
-                                        >
-                                            <div className='flex flex-col gap-2'>
-                                                <div className='flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4'>
-                                                    <span className='text-foreground font-medium'>
-                                                        {p.title}
-                                                    </span>
-                                                    <span className='text-muted-foreground shrink-0 tabular-nums sm:text-right'>
-                                                        {p.period}
-                                                    </span>
-                                                </div>
-                                                <p className='text-muted-foreground leading-relaxed'>
-                                                    {p.description}
-                                                </p>
+                            <div className='mt-8 flex max-w-[65ch] flex-col gap-7'>
+                                {CONFIG.education.map((item, idx, array) => (
+                                    <React.Fragment key={`${item.level}-${item.title}-${idx}`}>
+                                        <div className='flex flex-col gap-2'>
+                                            <div className='flex items-center gap-2'>
+                                                <span className='rounded-md bg-purple-500/10 border border-purple-500/20 px-2.5 py-0.5 text-xs font-semibold text-purple-400 uppercase tracking-wide'>
+                                                    {item.level}
+                                                </span>
                                             </div>
-                                            {idx < array.length - 1 && (
-                                                <Separator className='mx-auto max-w-96' />
-                                            )}
-                                        </React.Fragment>
-                                    )
-                                )}
+                                            <div className='flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4'>
+                                                <span className='text-foreground font-semibold text-lg'>
+                                                    {item.title}
+                                                </span>
+                                                <span className='text-muted-foreground shrink-0 tabular-nums text-sm sm:text-right'>
+                                                    {item.period}
+                                                </span>
+                                            </div>
+                                            <p className='text-foreground/90 font-medium text-sm'>
+                                                {item.institutionUrl ? (
+                                                    <a
+                                                        href={item.institutionUrl}
+                                                        target='_blank'
+                                                        rel='noopener noreferrer'
+                                                        className='text-foreground hover:text-purple-400 decoration-muted-foreground underline underline-offset-2 transition-colors'
+                                                    >
+                                                        {item.institution}
+                                                        <Icons.arrowUpRight className='inline-block size-4 ml-0.5' />
+                                                    </a>
+                                                ) : (
+                                                    item.institution
+                                                )}
+                                            </p>
+                                            <p className='text-muted-foreground leading-relaxed text-sm'>
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                        {idx < array.length - 1 && (
+                                            <Separator className='mx-auto max-w-96' />
+                                        )}
+                                    </React.Fragment>
+                                ))}
                             </div>
                         </div>
                     </section>
@@ -141,15 +137,9 @@ export default function Home() {
                 </>
             )}
 
-            <section id='skills' className='scroll-mt-24' aria-label='Open source'>
-                <OpenSource />
-            </section>
+            <Experience />
             <SectionRule />
-            <section aria-label='GitHub activity'>
-                <GitHubContributions />
-            </section>
-            <SectionRule />
-            <section aria-label='GitHub activity'>
+            <section id='github' className='scroll-mt-24' aria-label='GitHub activity'>
                 <GitHubContributions />
             </section>
         </div>

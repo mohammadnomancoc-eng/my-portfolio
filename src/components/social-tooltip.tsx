@@ -1,241 +1,459 @@
-import { CONFIG } from '@/config'
+import React from 'react'
 import styled from 'styled-components'
 
 const SocialTooltip = () => {
-  const linkedinUrl = CONFIG.socials.find((s) => s.icon === 'linkedin')?.url || 'https://linkedin.com/'
-  const githubUrl = CONFIG.socials.find((s) => s.icon === 'github')?.url || 'https://www.github.com/'
-  const emailUrl = CONFIG.socials.find((s) => s.icon === 'email')?.url || 'mailto:ferjani.nader@hotmail.fr'
-
   return (
-    <StyledWrapper>
-      <ul className="example-2">
-        <li className="icon-content">
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            data-social="linkedin"
-          >
-            <div className="filled" />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={16}
-              height={16}
-              fill="currentColor"
-              className="bi bi-linkedin"
-              viewBox="0 0 16 16"
-              xmlSpace="preserve"
-            >
-              <path
-                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-          <div className="tooltip">LinkedIn</div>
-        </li>
-        <li className="icon-content">
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            data-social="github"
-          >
-            <div className="filled" />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={16}
-              height={16}
-              fill="currentColor"
-              className="bi bi-github"
-              viewBox="0 0 16 16"
-              xmlSpace="preserve"
-            >
-              <path
-                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-          <div className="tooltip">GitHub</div>
-        </li>
-        <li className="icon-content">
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            data-social="instagram"
-          >
-            <div className="filled" />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={16}
-              height={16}
-              fill="currentColor"
-              className="bi bi-instagram"
-              viewBox="0 0 16 16"
-              xmlSpace="preserve"
-            >
-              <path
-                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-          <div className="tooltip">Instagram</div>
-        </li>
-        <li className="icon-content">
-          <a
-            href={emailUrl}
-            aria-label="Email"
-            data-social="email"
-          >
-            <div className="filled" />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={16}
-              height={16}
-              fill="currentColor"
-              className="bi bi-envelope-fill"
-              viewBox="0 0 16 16"
-              xmlSpace="preserve"
-            >
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414z" fill="currentColor" />
-              <path d="M0 4.697v7.104l5.803-3.558z" fill="currentColor" />
-              <path d="M6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586z" fill="currentColor" />
-              <path d="M16 4.697v7.104l-5.803-3.558z" fill="currentColor" />
-            </svg>
-          </a>
-          <div className="tooltip">Email</div>
-        </li>
-      </ul>
-    </StyledWrapper>
+    <ContainerWrapper>
+      {/* LinkedIn Button */}
+      <a
+        href="https://www.linkedin.com/in/mohammad-noman-23b0a4324/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+      >
+        <LinkedInWrapper>
+          <button type="button">
+            <span className="icon">
+              <svg
+                fill="none"
+                height={33}
+                viewBox="0 0 120 120"
+                width={33}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clipRule="evenodd" fillRule="evenodd">
+                  <path
+                    d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z"
+                    fill="#2867b2"
+                  />
+                  <g fill="#fff">
+                    <path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z" />
+                    <path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z" />
+                    <path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z" />
+                  </g>
+                </g>
+              </svg>
+            </span>
+            <span className="text1">Follow me</span>
+            <span className="text2">LinkedIn</span>
+          </button>
+        </LinkedInWrapper>
+      </a>
+
+      {/* GitHub Button */}
+      <a
+        href="https://github.com/mohammadnomancoc-eng"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+      >
+        <GitHubWrapper>
+          <button type="button">
+            <span className="icon">
+              <svg
+                viewBox="0 0 24 24"
+                height={33}
+                width={33}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </span>
+            <span className="text1">Follow me</span>
+            <span className="text2">GitHub</span>
+          </button>
+        </GitHubWrapper>
+      </a>
+
+      {/* Instagram Button */}
+      <a
+        href="https://www.instagram.com/_noman_khan_23_/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+      >
+        <InstagramWrapper>
+          <button type="button">
+            <span className="icon">
+              <svg
+                height={33}
+                viewBox="0 0 128 128"
+                width={33}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <linearGradient
+                  id="instaGrad"
+                  gradientTransform="matrix(1 0 0 -1 594 633)"
+                  gradientUnits="userSpaceOnUse"
+                  x1="-566.711"
+                  x2="-493.288"
+                  y1="516.569"
+                  y2="621.43"
+                >
+                  <stop offset={0} stopColor="#ffb900" />
+                  <stop offset={1} stopColor="#9100eb" />
+                </linearGradient>
+                <circle cx={64} cy={64} fill="url(#instaGrad)" r={64} />
+                <g fill="#fff">
+                  <path d="m82.333 104h-36.666c-11.947 0-21.667-9.719-21.667-21.667v-36.666c0-11.948 9.72-21.667 21.667-21.667h36.666c11.948 0 21.667 9.719 21.667 21.667v36.667c0 11.947-9.719 21.666-21.667 21.666zm-36.666-73.333c-8.271 0-15 6.729-15 15v36.667c0 8.271 6.729 15 15 15h36.666c8.271 0 15-6.729 15-15v-36.667c0-8.271-6.729-15-15-15z" />
+                  <path d="m64 84c-11.028 0-20-8.973-20-20 0-11.029 8.972-20 20-20s20 8.971 20 20c0 11.027-8.972 20-20 20zm0-33.333c-7.352 0-13.333 5.981-13.333 13.333 0 7.353 5.981 13.333 13.333 13.333s13.333-5.98 13.333-13.333c0-7.352-5.98-13.333-13.333-13.333z" />
+                  <circle cx="85.25" cy="42.75" r="4.583" />
+                </g>
+              </svg>
+            </span>
+            <span className="text1">Follow me</span>
+            <span className="text2">Instagram</span>
+          </button>
+        </InstagramWrapper>
+      </a>
+
+      {/* Email Button */}
+      <a
+        href="mailto:mohammadnomancoc@gmail.com"
+        aria-label="Email"
+      >
+        <MailWrapper>
+          <button type="button">
+            <span className="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={33}
+                height={33}
+                viewBox="0 0 72 72"
+              >
+                <g fillRule="evenodd" fill="none">
+                  <path
+                    fill="#cc2127"
+                    d="m36 72c19.882251 0 36-16.117749 36-36 0-19.882251-16.117749-36-36-36-19.882251 0-36 16.117749-36 36 0 19.882251 16.117749 36 36 36z"
+                  />
+                  <path
+                    fill="#fff"
+                    d="M20 25c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h32c1.1 0 2-.9 2-2V27c0-1.1-.9-2-2-2H20zm16 11.5L21.5 27h29L36 36.5zM20 45V29.2l16 10.4 16-10.4V45H20z"
+                  />
+                </g>
+              </svg>
+            </span>
+            <span className="text1">Email me</span>
+            <span className="text2">Email</span>
+          </button>
+        </MailWrapper>
+      </a>
+    </ContainerWrapper>
   )
 }
 
-const StyledWrapper = styled.div`
-  .socials-container {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
+const ContainerWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  a {
+    text-decoration: none;
+    display: inline-block;
   }
+`
 
-  .example-2 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: visible;
-  }
-  .example-2 .icon-content {
-    margin: 0 10px;
+const LinkedInWrapper = styled.div`
+  button {
     position: relative;
-    z-index: 1;
-  }
-  .example-2 .icon-content:first-child {
-    margin-left: 0;
-  }
-  .example-2 .icon-content:hover {
-    z-index: 10;
-  }
-  .example-2 .icon-content .tooltip {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 5px;
-    opacity: 0;
-    visibility: hidden;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    z-index: 100;
-    pointer-events: none;
-  }
-  .example-2 .icon-content:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-    top: -50px;
-  }
-  .example-2 .icon-content a {
-    position: relative;
+    width: 135px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: white;
+    border: 1px #2867b2 solid;
     overflow: hidden;
+    cursor: pointer;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 4px solid #000;
+  }
+
+  .text1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 40px;
     color: #000;
-    background-color: #fff;
-    transition: all 0.3s ease-in-out;
-    box-sizing: border-box;
+    white-space: nowrap;
   }
-  .example-2 .icon-content a:hover {
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-    border-color: #000;
-  }
-  .example-2 .icon-content a svg {
-    position: relative;
-    z-index: 1;
-    width: 30px;
-    height: 30px;
-  }
-  .example-2 .icon-content a:hover {
-    color: white;
-  }
-  .example-2 .icon-content a .filled {
+
+  .text2 {
     position: absolute;
-    top: auto;
-    bottom: 0;
+    top: 50%;
+    left: -70px;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+    white-space: nowrap;
+    z-index: 2;
+    transition: transform 0.5s ease;
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
     left: 0;
-    width: 100%;
-    height: 0;
-    background-color: #000;
-    transition: all 0.3s ease-in-out;
-  }
-  .example-2 .icon-content a:hover .filled {
-    height: 100%;
+    z-index: 1;
+    transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .example-2 .icon-content a[data-social="linkedin"] .filled,
-  .example-2 .icon-content a[data-social="linkedin"] ~ .tooltip {
-    background-color: #0274b3;
+  .icon::before {
+    position: absolute;
+    left: -105px;
+    top: 0;
+    z-index: -1;
+    content: '';
+    width: 135px;
+    height: 33px;
+    border-radius: 30px;
+    background-color: #2867b2;
   }
 
-  .example-2 .icon-content a[data-social="github"] .filled,
-  .example-2 .icon-content a[data-social="github"] ~ .tooltip {
-    background-color: #24262a;
+  button:hover .icon {
+    transform: translateX(98px);
   }
 
-  .example-2 .icon-content a[data-social="instagram"] .filled,
-  .example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
-    background: linear-gradient(
-      45deg,
-      #405de6,
-      #5b51db,
-      #b33ab4,
-      #c135b4,
-      #e1306c,
-      #fd1f1f
+  button:hover .text2 {
+    transform: translate(82px, -50%);
+  }
+
+  button:active {
+    transform: scale(1.03);
+  }
+`
+
+const GitHubWrapper = styled.div`
+  button {
+    position: relative;
+    width: 135px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: white;
+    border: 1px #000000 solid;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .text1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 40px;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .text2 {
+    position: absolute;
+    top: 50%;
+    left: -70px;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+    white-space: nowrap;
+    z-index: 2;
+    transition: transform 0.5s ease;
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon::before {
+    position: absolute;
+    left: -105px;
+    top: 0;
+    z-index: -1;
+    content: '';
+    width: 135px;
+    height: 33px;
+    border-radius: 30px;
+    background-color: #000000;
+  }
+
+  .icon::after {
+    position: absolute;
+    left: 0.5px;
+    top: 0.5px;
+    z-index: -1;
+    content: '';
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: white;
+  }
+
+  button:hover .icon {
+    transform: translateX(98px);
+  }
+
+  button:hover .text2 {
+    transform: translate(82px, -50%);
+  }
+
+  button:active {
+    transform: scale(1.03);
+  }
+`
+
+const InstagramWrapper = styled.div`
+  button {
+    position: relative;
+    width: 135px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: white;
+    border: 1px #0a0a0a solid;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .text1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 40px;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .text2 {
+    position: absolute;
+    top: 50%;
+    left: -70px;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+    white-space: nowrap;
+    z-index: 2;
+    transition: transform 0.5s ease;
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon::before {
+    position: absolute;
+    left: -105px;
+    top: 0;
+    z-index: -1;
+    content: '';
+    width: 135px;
+    height: 33px;
+    border-radius: 30px;
+    background: radial-gradient(
+      circle at 30% 107%,
+      #fdf497 0%,
+      #fdf497 5%,
+      #fd5949 45%,
+      #d6249f 60%,
+      #285aeb 90%
     );
   }
 
-  .example-2 .icon-content a[data-social="email"] .filled,
-  .example-2 .icon-content a[data-social="email"] ~ .tooltip {
-    background-color: #ea4335;
+  button:hover .icon {
+    transform: translateX(98px);
+  }
+
+  button:hover .text2 {
+    transform: translate(82px, -50%);
+  }
+
+  button:active {
+    transform: scale(1.03);
+  }
+`
+
+const MailWrapper = styled.div`
+  button {
+    position: relative;
+    width: 135px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: white;
+    border: 1px #cc2127 solid;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .text1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 40px;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .text2 {
+    position: absolute;
+    top: 50%;
+    left: -70px;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+    white-space: nowrap;
+    z-index: 2;
+    transition: transform 0.5s ease;
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon::before {
+    position: absolute;
+    left: -105px;
+    top: 0;
+    z-index: -1;
+    content: '';
+    width: 135px;
+    height: 33px;
+    border-radius: 30px;
+    background-color: #cc2127;
+  }
+
+  button:hover .icon {
+    transform: translateX(98px);
+  }
+
+  button:hover .text2 {
+    transform: translate(82px, -50%);
+  }
+
+  button:active {
+    transform: scale(1.03);
   }
 `
 

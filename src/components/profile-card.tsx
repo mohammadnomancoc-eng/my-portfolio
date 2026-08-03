@@ -3,26 +3,6 @@ import styled from 'styled-components'
 import { CONFIG } from '@/config'
 
 const ProfileCard = () => {
-  const [spinState, setSpinState] = useState<'idle' | 'spinning' | 'done'>('idle')
-
-  useEffect(() => {
-    const handlePreloaderDone = () => {
-      setSpinState('spinning')
-    }
-
-    window.addEventListener('preloader-finished', handlePreloaderDone)
-
-    // Fallback in case preloader is skipped or already done
-    const fallbackTimer = setTimeout(() => {
-      setSpinState((prev) => (prev === 'idle' ? 'spinning' : prev))
-    }, 4500)
-
-    return () => {
-      window.removeEventListener('preloader-finished', handlePreloaderDone)
-      clearTimeout(fallbackTimer)
-    }
-  }, [])
-
   const linkedinUrl = CONFIG.socials.find((s) => (s.icon as string) === 'linkedin')?.url || 'https://linkedin.com/'
   const githubUrl = CONFIG.socials.find((s) => (s.icon as string) === 'github')?.url || 'https://github.com/'
   const instagramUrl = CONFIG.socials.find((s) => (s.icon as string) === 'instagram')?.url || 'https://instagram.com/'
@@ -31,10 +11,7 @@ const ProfileCard = () => {
   return (
     <StyledWrapper>
       <div className="container">
-        <div
-          className={`card ${spinState === 'spinning' ? 'spin-entrance' : ''} ${spinState === 'idle' ? 'pre-spin' : ''}`}
-          onAnimationEnd={() => setSpinState('done')}
-        >
+        <div className="card">
           <div className="front">
             <div className="card-top">
               <p className="card-top-para">Profile</p>

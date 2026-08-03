@@ -1,57 +1,110 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('home');
-  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const navRef = useRef<HTMLElement | null>(null);
   const btnRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
-  const labels = ['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'];
+  const sections = ['home', 'about', 'projects', 'skills', 'education', 'experience', 'contact'];
+  const labels = ['Home', 'About', 'Projects', 'Skills', 'Education', 'Experience', 'Contact'];
 
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
-        { threshold: 0.4 }
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  useEffect(() => {
+  const updatePillPosition = useCallback(() => {
     const activeIndex = sections.indexOf(activeSection);
     const btn = btnRefs.current[activeIndex];
     const nav = navRef.current;
     if (btn && nav) {
       const navRect = nav.getBoundingClientRect();
       const btnRect = btn.getBoundingClientRect();
-      setPillStyle({
-        left: btnRect.left - navRect.left,
-        width: btnRect.width,
-      });
+      if (btnRect.width > 0) {
+        setPillStyle({
+          left: btnRect.left - navRect.left,
+          width: btnRect.width,
+          opacity: 1,
+        });
+      }
     }
   }, [activeSection]);
 
+  useEffect(() => {
+    if (location.pathname === '/projects') {
+      setActiveSection('projects');
+      return;
+    }
+
+    const observers: IntersectionObserver[] = [];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [location.pathname]);
+
+  useEffect(() => {
+    updatePillPosition();
+    const timer1 = setTimeout(updatePillPosition, 50);
+    const timer2 = setTimeout(updatePillPosition, 200);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [activeSection, location.pathname, updatePillPosition]);
+
+  useEffect(() => {
+    window.addEventListener('resize', updatePillPosition);
+    return () => window.removeEventListener('resize', updatePillPosition);
+  }, [updatePillPosition]);
+
   const handleClick = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        if (id === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      if (id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   return (
     <StyledWrapper>
       <nav className="navbar" ref={navRef}>
-        <div className="pill" style={{ left: pillStyle.left, width: pillStyle.width }} />
+        <div
+          className="pill"
+          style={{
+            left: pillStyle.left,
+            width: pillStyle.width,
+            opacity: pillStyle.opacity,
+          }}
+        />
         {labels.map((label, i) => (
           <div
             key={label}
             ref={(el) => {
-              btnRefs.current[i] = el
+              btnRefs.current[i] = el;
             }}
             className={`btn ${activeSection === sections[i] ? 'active' : ''}`}
             onClick={() => handleClick(sections[i])}
@@ -91,9 +144,11 @@ const StyledWrapper = styled.div`
     background: #ffffff;
     border-radius: 20px;
     transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s ease;
     pointer-events: none;
     top: 8px;
+    z-index: 0;
   }
 
   .btn {
