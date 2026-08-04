@@ -127,41 +127,51 @@ const StyledWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 8px 12px;
-    gap: 4px;
+    padding: 6px 8px;
+    gap: 2px;
     background: rgba(16, 16, 16, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 40px;
     width: fit-content;
+    max-width: calc(100vw - 24px);
     white-space: nowrap;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .navbar::-webkit-scrollbar {
+    display: none;
   }
 
   .pill {
     position: absolute;
-    height: calc(100% - 16px);
+    height: calc(100% - 12px);
     background: #ffffff;
     border-radius: 20px;
     transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.2s ease;
     pointer-events: none;
-    top: 8px;
+    top: 6px;
     z-index: 0;
   }
 
   .btn {
     position: relative;
     z-index: 1;
-    padding: 6px 18px;
+    padding: 5px 10px;
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     cursor: pointer;
     border-radius: 20px;
     transition: color 0.2s ease;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   .btn.active {
@@ -170,6 +180,23 @@ const StyledWrapper = styled.div`
 
   .btn:hover:not(.active) {
     color: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (min-width: 640px) {
+    .navbar {
+      padding: 8px 12px;
+      gap: 4px;
+    }
+
+    .pill {
+      height: calc(100% - 16px);
+      top: 8px;
+    }
+
+    .btn {
+      padding: 6px 18px;
+      font-size: 14px;
+    }
   }
 `;
 

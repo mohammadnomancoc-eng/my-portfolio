@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator'
 
 const Contact = () => {
     return (
-        <footer id='contact' className='scroll-mt-24 px-4 pb-6'>
+        <footer id='contact' className='scroll-mt-24 px-1 sm:px-4 pb-6'>
             <h2>Get in touch</h2>
             <p className='text-muted-foreground max-w-[65ch] leading-relaxed mb-8'>
                 Feel free to reach out if you want to collaborate on a project,
@@ -51,7 +51,7 @@ const Contact = () => {
             </div>
 
             {/* Bottom Footer Bar */}
-            <div className='mt-12 pt-6 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground'>
+            <div className='mt-12 pt-6 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-sm text-muted-foreground'>
                 <p>
                     © 2026 Check repository on{' '}
                     <a

@@ -118,7 +118,7 @@ export const Keyboard3D: React.FC<Keyboard3DProps> = ({
     >
       {/* 3D Keyboard Base / Enclosure */}
       <div
-        className="relative transition-transform duration-300 ease-out p-6 sm:p-8 rounded-3xl bg-black border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] flex flex-col items-center gap-3 sm:gap-4 max-w-full"
+        className="relative transition-transform duration-300 ease-out p-3 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-black border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] flex flex-col items-center gap-2 sm:gap-3 md:gap-4 max-w-full"
         style={{
           transformStyle: "preserve-3d",
           transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
@@ -147,13 +147,13 @@ export const Keyboard3D: React.FC<Keyboard3DProps> = ({
 
         {/* Keycap Matrix Rows */}
         <div
-          className="flex flex-col gap-2.5 sm:gap-3.5 items-center w-full"
+          className="flex flex-col gap-1.5 sm:gap-2.5 md:gap-3.5 items-center w-full"
           style={{ transform: "translateZ(20px)" }}
         >
           {rows.map((rowKeys, rowIndex) => (
             <div
               key={rowIndex}
-              className="flex items-center justify-center gap-2 sm:gap-3 w-full"
+              className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3 w-full"
             >
               {rowKeys.map((key) => {
                 const isActive = activeKeyName === key.name;
@@ -179,8 +179,8 @@ export const Keyboard3D: React.FC<Keyboard3DProps> = ({
                     <div
                       className={`
                         keycap-3d
-                        w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20
-                        p-1.5 sm:p-2 cursor-pointer
+                        w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20
+                        p-1 sm:p-1.5 md:p-2 cursor-pointer
                         ${isActive ? "is-active" : ""}
                         ${isPressed ? "is-pressed" : ""}
                       `}
@@ -201,7 +201,7 @@ export const Keyboard3D: React.FC<Keyboard3DProps> = ({
                       {/* Content Container (Icon + Legend) */}
                       <div className="keycap-content relative z-10 flex flex-col items-center justify-center transition-transform duration-100">
                         {/* Keycap Icon */}
-                        <div className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 flex items-center justify-center mb-0.5 transition-transform duration-200 group-hover:scale-110">
+                        <div className="w-4 h-4 sm:w-7 sm:h-7 md:w-8 md:h-8 flex items-center justify-center mb-0.5 transition-transform duration-200 group-hover:scale-110">
                           {key.icon && !failedIcons[key.name] ? (
                             <img
                               src={key.icon}
@@ -254,7 +254,7 @@ export const Keyboard3D: React.FC<Keyboard3DProps> = ({
           className="w-full flex items-center justify-center gap-3 pt-2"
           style={{ transform: "translateZ(12px)" }}
         >
-          <div className="keycap-3d w-48 sm:w-64 md:w-80 h-10 sm:h-12 flex items-center justify-center px-4 cursor-pointer">
+          <div className="keycap-3d w-36 sm:w-64 md:w-80 h-9 sm:h-12 flex items-center justify-center px-3 sm:px-4 cursor-pointer">
             <span className="keycap-content text-[10px] sm:text-xs text-gray-300 font-mono uppercase tracking-widest relative z-10">
               {activeKeyName
                 ? KEYBOARD_KEYS[activeKeyName]?.label.toUpperCase()

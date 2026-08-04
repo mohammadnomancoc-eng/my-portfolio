@@ -1,6 +1,6 @@
 import { GitHubContributionsClient } from '@/components/github-contributions-client'
 import { CONFIG } from '@/config'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Activity } from 'react-activity-calendar'
 
 type ApiResponse = {
@@ -17,6 +17,7 @@ const GitHubContributions = () => {
     const [activities, setActivities] = useState<Activity[]>([])
     const [error, setError] = useState<Error | null>(null)
     const [loading, setLoading] = useState(true)
+    const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         const fetchContributions = async () => {
@@ -54,8 +55,19 @@ const GitHubContributions = () => {
         fetchContributions()
     }, [])
 
+    useEffect(() => {
+        if (!loading && activities.length > 0 && containerRef.current) {
+            const timer = setTimeout(() => {
+                if (containerRef.current) {
+                    containerRef.current.scrollLeft = containerRef.current.scrollWidth
+                }
+            }, 100)
+            return () => clearTimeout(timer)
+        }
+    }, [loading, activities])
+
     return (
-        <div className='animate-slide-from-down-and-fade-2 space-y-4 px-4'>
+        <div className='animate-slide-from-down-and-fade-2 space-y-4 px-1 sm:px-4'>
             <div className='space-y-2'>
                 <h2>GitHub Activity</h2>
                 <p className='text-muted-foreground max-w-[65ch] leading-relaxed'>
@@ -73,7 +85,7 @@ const GitHubContributions = () => {
                     Unable to load contribution data at this time.
                 </p>
             ) : (
-                <div className='flex overflow-x-auto'>
+                <div ref={containerRef} className='flex overflow-x-auto scrollbar-hide'>
                     <GitHubContributionsClient data={activities} year={year} />
                 </div>
             )}

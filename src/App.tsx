@@ -32,7 +32,7 @@ export default function App() {
             <ScrollToTop />
             <Preloader />
             <Navbar />
-            <main className={`mx-auto max-w-3xl py-4 md:pt-10 transition-all duration-700 ${isLoaded ? 'animate-site-reveal' : 'opacity-95'}`}>
+            <main className={`mx-auto max-w-3xl px-3 sm:px-4 md:px-0 py-4 md:pt-10 transition-all duration-700 ${isLoaded ? 'animate-site-reveal' : 'opacity-95'}`}>
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/projects' element={<Projects />} />

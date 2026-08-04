@@ -301,3 +301,22 @@
   animation: site-reveal-fade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Mobile Utilities                                                           */
+/* -------------------------------------------------------------------------- */
+
+/* Hide scrollbars while allowing scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe touch interaction on interactive elements */
+@utility touch-target {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+

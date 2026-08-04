@@ -23,7 +23,7 @@ export default function Home() {
         <div className='flex flex-col'>
             <Header />
             <section id='about' className='mt-12 scroll-mt-24' aria-labelledby='home-about'>
-                <div className='animate-slide-from-down-and-fade-2 space-y-4 px-4'>
+                <div className='animate-slide-from-down-and-fade-2 space-y-4 px-1 sm:px-4'>
                     <div className='flex flex-wrap items-center justify-between gap-4'>
                         <h2 id='home-about'>About me</h2>
                         <div className='flex items-center gap-3'>
@@ -39,7 +39,7 @@ export default function Home() {
             <SectionRule />
             <section id='projects' className='scroll-mt-24' aria-labelledby='home-projects'>
                 <div className='animate-slide-from-down-and-fade-3 flex flex-col gap-7'>
-                    <div className='-mb-4 flex items-center justify-between gap-4 px-4'>
+                    <div className='-mb-4 flex items-center justify-between gap-4 px-1 sm:px-4'>
                         <h2 id='home-projects'>Projects I worked on</h2>
                         <Button
                             asChild
@@ -87,7 +87,7 @@ export default function Home() {
             {CONFIG.education && CONFIG.education.length > 0 && (
                 <>
                     <section id='education' className='scroll-mt-24' aria-labelledby='home-education'>
-                        <div className='animate-slide-from-down-and-fade-2 space-y-4 px-4'>
+                        <div className='animate-slide-from-down-and-fade-2 space-y-4 px-1 sm:px-4'>
                             <h2 id='home-education'>Education</h2>
                             <div className='mt-8 flex max-w-[65ch] flex-col gap-7'>
                                 {CONFIG.education.map((item, idx, array) => (

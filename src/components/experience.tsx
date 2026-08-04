@@ -8,7 +8,7 @@ export const Experience: React.FC = () => {
 
   return (
     <section id='experience' className='scroll-mt-24' aria-labelledby='home-experience'>
-      <div className='animate-slide-from-down-and-fade-2 space-y-6 px-4'>
+      <div className='animate-slide-from-down-and-fade-2 space-y-6 px-1 sm:px-4'>
         <h2 id='home-experience'>Experience</h2>
         <div className='flex flex-col gap-8 max-w-[65ch]'>
           {CONFIG.experiences.map((exp, idx) => {
@@ -20,8 +20,8 @@ export const Experience: React.FC = () => {
                 className='flex flex-col gap-5 p-6 rounded-2xl bg-white/[0.03] border border-white/10 shadow-xl backdrop-blur-sm relative overflow-hidden group hover:border-white/20 transition-all duration-300'
               >
                 {/* Header with 3D Flip Card & Company Info */}
-                <div className='flex items-start gap-4 sm:gap-6 justify-between'>
-                  <div className='flex items-start gap-4 sm:gap-6'>
+                <div className='flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-6 sm:justify-between'>
+                  <div className='flex items-start gap-3 sm:gap-6'>
                     {/* 3D Flip Card for Company Logo */}
                     <StyledCardWrapper className='shrink-0'>
                       <div className='card'>
@@ -50,7 +50,7 @@ export const Experience: React.FC = () => {
 
                     {/* Company & Role Text Info */}
                     <div className='flex flex-col gap-1'>
-                      <h3 className='text-xl font-bold text-white tracking-tight flex items-center'>
+                      <h3 className='text-lg sm:text-xl font-bold text-white tracking-tight flex items-center'>
                         {exp.companyUrl ? (
                           <a
                             href={exp.companyUrl}
@@ -63,7 +63,7 @@ export const Experience: React.FC = () => {
                               <img
                                 src={exp.companyTitleImage}
                                 alt={exp.company}
-                                className='h-10 sm:h-12 w-auto object-contain max-w-[300px] sm:max-w-[420px]'
+                                className='h-8 sm:h-12 w-auto object-contain max-w-[200px] sm:max-w-[420px]'
                               />
                             ) : (
                               <span>{exp.company}</span>
@@ -74,7 +74,7 @@ export const Experience: React.FC = () => {
                           <img
                             src={exp.companyTitleImage}
                             alt={exp.company}
-                            className='h-10 sm:h-12 w-auto object-contain max-w-[300px] sm:max-w-[420px]'
+                            className='h-8 sm:h-12 w-auto object-contain max-w-[200px] sm:max-w-[420px]'
                           />
                         ) : (
                           exp.company
@@ -87,7 +87,7 @@ export const Experience: React.FC = () => {
                   </div>
 
                   {/* Period */}
-                  <span className='text-muted-foreground text-xs sm:text-sm font-mono shrink-0 pt-1'>
+                  <span className='text-muted-foreground text-xs sm:text-sm font-mono shrink-0 pl-0 sm:pt-1'>
                     {exp.period}
                   </span>
                 </div>
@@ -145,11 +145,11 @@ export const Experience: React.FC = () => {
 const StyledCardWrapper = styled.div`
   .card {
     position: relative;
-    width: 120px;
-    height: 90px;
+    width: 80px;
+    height: 60px;
     background-color: rgba(22, 22, 24, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,36 +160,66 @@ const StyledCardWrapper = styled.div`
     cursor: pointer;
   }
 
+  @media (min-width: 640px) {
+    .card {
+      width: 120px;
+      height: 90px;
+      border-radius: 12px;
+    }
+  }
+
   .card__front {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 12px;
+    padding: 8px;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
+  @media (min-width: 640px) {
+    .card__front {
+      padding: 12px;
+    }
+  }
+
   .card__logo {
-    max-width: 90px;
-    max-height: 50px;
+    max-width: 60px;
+    max-height: 36px;
     width: auto;
     height: auto;
     object-fit: contain;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
+  @media (min-width: 640px) {
+    .card__logo {
+      max-width: 90px;
+      max-height: 50px;
+    }
+  }
+
   .card__logo_text {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     color: #fff;
+  }
+
+  @media (min-width: 640px) {
+    .card__logo_text {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      font-size: 20px;
+    }
   }
 
   .card:hover {
@@ -209,7 +239,7 @@ const StyledCardWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 8px;
     box-sizing: border-box;
     background-color: #1a1a1e;
     transform: rotateX(-90deg);
@@ -221,6 +251,12 @@ const StyledCardWrapper = styled.div`
     overflow: hidden;
   }
 
+  @media (min-width: 640px) {
+    .card__content {
+      padding: 10px;
+    }
+  }
+
   .card:hover .card__content {
     transform: rotateX(0deg);
   }
@@ -228,7 +264,7 @@ const StyledCardWrapper = styled.div`
   .card__title {
     margin: 0;
     font-[Onest]
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: #ffffff;
     text-transform: uppercase;
@@ -238,15 +274,28 @@ const StyledCardWrapper = styled.div`
     white-space: nowrap;
   }
 
+  @media (min-width: 640px) {
+    .card__title {
+      font-size: 11px;
+    }
+  }
+
   .card__description {
-    margin: 4px 0 0 0;
-    font-size: 10px;
+    margin: 3px 0 0 0;
+    font-size: 9px;
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.3;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .card__description {
+      font-size: 10px;
+      -webkit-line-clamp: 3;
+    }
   }
 `
 

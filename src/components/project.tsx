@@ -53,10 +53,11 @@ const Project = ({
     const filterId = React.useId()
 
     return (
-        <div className='rounded-none border-none p-4 sm:rounded-lg'>
+        <div className='rounded-none border-none p-3 sm:p-4 sm:rounded-lg'>
             <div className='flex flex-col gap-2'>
-                <div className='flex items-start justify-between gap-4'>
-                    <div className='flex items-start gap-4 sm:gap-6'>
+                {/* Main row: stacks vertically on mobile, horizontal on sm+ */}
+                <div className='flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4'>
+                    <div className='flex items-start gap-3 sm:gap-6'>
                         {/* 3D Flip Card on the Left */}
                         <StyledCardWrapper className='shrink-0'>
                             <div className='card'>
@@ -119,7 +120,7 @@ const Project = ({
 
                     {/* Links: GitHub & Website */}
                     {url && (
-                        <div className='flex shrink-0 items-center gap-3 sm:gap-4'>
+                        <div className='flex shrink-0 items-center gap-3 sm:gap-4 self-end sm:self-auto'>
                             <StyledGithubWrapper className='shrink-0'>
                                 <a
                                     href={github || 'https://github.com'}
@@ -239,11 +240,11 @@ const Project = ({
 const StyledCardWrapper = styled.div`
     .card {
         position: relative;
-        width: 120px;
-        height: 90px;
+        width: 80px;
+        height: 60px;
         background-color: rgba(22, 22, 24, 0.9);
         border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -254,36 +255,66 @@ const StyledCardWrapper = styled.div`
         cursor: pointer;
     }
 
+    @media (min-width: 640px) {
+        .card {
+            width: 120px;
+            height: 90px;
+            border-radius: 12px;
+        }
+    }
+
     .card__front {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
         height: 100%;
-        padding: 12px;
+        padding: 8px;
         transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
+    @media (min-width: 640px) {
+        .card__front {
+            padding: 12px;
+        }
+    }
+
     .card__logo {
-        width: 42px;
-        height: 42px;
+        width: 32px;
+        height: 32px;
         object-fit: contain;
         fill: #ffffff;
         color: #ffffff;
         transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
+    @media (min-width: 640px) {
+        .card__logo {
+            width: 42px;
+            height: 42px;
+        }
+    }
+
     .card__logo_text {
-        width: 42px;
-        height: 42px;
-        border-radius: 10px;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
         background: rgba(255, 255, 255, 0.1);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 700;
         color: #fff;
+    }
+
+    @media (min-width: 640px) {
+        .card__logo_text {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
     }
 
     .card:hover {
@@ -303,7 +334,7 @@ const StyledCardWrapper = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
-        padding: 10px;
+        padding: 8px;
         box-sizing: border-box;
         background-color: #1a1a1e;
         transform: rotateX(-90deg);
@@ -315,13 +346,19 @@ const StyledCardWrapper = styled.div`
         overflow: hidden;
     }
 
+    @media (min-width: 640px) {
+        .card__content {
+            padding: 10px;
+        }
+    }
+
     .card:hover .card__content {
         transform: rotateX(0deg);
     }
 
     .card__title {
         margin: 0;
-        font-size: 12px;
+        font-size: 10px;
         color: #ffffff;
         font-weight: 700;
         white-space: nowrap;
@@ -329,15 +366,29 @@ const StyledCardWrapper = styled.div`
         text-overflow: ellipsis;
     }
 
+    @media (min-width: 640px) {
+        .card__title {
+            font-size: 12px;
+        }
+    }
+
     .card__description {
-        margin: 3px 0 0;
-        font-size: 10px;
+        margin: 2px 0 0;
+        font-size: 9px;
         color: #a1a1aa;
         line-height: 1.3;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+        .card__description {
+            margin: 3px 0 0;
+            font-size: 10px;
+            -webkit-line-clamp: 3;
+        }
     }
 `
 
@@ -369,12 +420,20 @@ const StyledGithubWrapper = styled.div`
         height: 20px;
     }
 
+    /* Hide the cube text on mobile, show icon-only */
     .cube {
-        transition: all 0.4s ease;
-        transform-style: preserve-3d;
-        width: 140px;
-        height: 38px;
-        position: relative;
+        display: none;
+    }
+
+    @media (min-width: 640px) {
+        .cube {
+            display: block;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+            width: 140px;
+            height: 38px;
+            position: relative;
+        }
     }
 
     .button-icon:hover {
