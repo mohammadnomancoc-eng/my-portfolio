@@ -15,7 +15,7 @@ const Contact = () => {
             </p>
             <div className='mt-8 flex flex-col md:flex-row items-start justify-between gap-10 md:gap-14'>
                 {/* Left Half: Contact Form */}
-                <div className='flex flex-col items-start gap-6 w-full md:w-auto'>
+                <div className='flex flex-col items-start gap-6 w-full max-w-sm md:max-w-md'>
                     <h3 className='text-xl font-bold tracking-tight text-foreground'>
                         Contact ME
                     </h3>

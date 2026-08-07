@@ -118,25 +118,16 @@ const StyledWrapper = styled.div`
 
   .card {
     width: 100%;
-    max-width: 340px;
-    padding: 20px;
+    max-width: 380px;
+    padding: 30px;
     background: #fff;
-    border: 4px solid #000;
-    box-shadow: 8px 8px 0 #000;
-    transform: rotate(-1deg);
+    border: 8px solid #000;
+    box-shadow: 15px 15px 0 #000;
+    transform: rotate(-2deg);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-  }
-
-  @media (min-width: 640px) {
-    .card {
-      padding: 30px;
-      border-width: 8px;
-      box-shadow: 15px 15px 0 #000;
-      transform: rotate(-2deg);
-    }
   }
 
   .card:active {
@@ -145,13 +136,7 @@ const StyledWrapper = styled.div`
 
   .card:hover {
     transform: rotate(0deg) scale(1.02);
-    box-shadow: 12px 12px 0 #000;
-  }
-
-  @media (min-width: 640px) {
-    .card:hover {
-      box-shadow: 20px 20px 0 #000;
-    }
+    box-shadow: 20px 20px 0 #000;
   }
 
   .banner {
@@ -165,16 +150,10 @@ const StyledWrapper = styled.div`
     text-align: center;
     transform: rotate(45deg);
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     letter-spacing: 2px;
     overflow: hidden;
     transition: background 0.5s ease;
-  }
-
-  @media (min-width: 640px) {
-    .banner {
-      font-size: 18px;
-    }
   }
 
   .banner-text {
@@ -207,7 +186,7 @@ const StyledWrapper = styled.div`
   }
 
   .card__title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     color: #000;
     text-transform: uppercase;
@@ -218,45 +197,25 @@ const StyledWrapper = styled.div`
     padding-bottom: 4px;
   }
 
-  @media (min-width: 640px) {
-    .card__title {
-      font-size: 24px;
-    }
-  }
-
   .card__subtitle {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.4;
     color: #333;
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-  }
-
-  @media (min-width: 640px) {
-    .card__subtitle {
-      font-size: 15px;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-    }
+    margin-bottom: 20px;
+    padding-bottom: 10px;
   }
 
   .card__form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-  }
-
-  @media (min-width: 640px) {
-    .card__form {
-      gap: 14px;
-    }
+    gap: 14px;
   }
 
   .card__form input,
   .card__form textarea {
-    padding: 10px;
-    border: 3px solid #000;
-    font-size: 14px;
+    padding: 12px;
+    border: 4px solid #000;
+    font-size: 15px;
     font-family: inherit;
     transition: all 0.3s ease;
     background-color: #fff;
@@ -266,46 +225,22 @@ const StyledWrapper = styled.div`
     box-sizing: border-box;
   }
 
-  @media (min-width: 640px) {
-    .card__form input,
-    .card__form textarea {
-      padding: 12px;
-      border-width: 4px;
-      font-size: 15px;
-    }
-  }
-
   .card__form input:focus,
   .card__form textarea:focus {
     outline: none;
-    transform: scale(1.02);
-  }
-
-  @media (min-width: 640px) {
-    .card__form input:focus,
-    .card__form textarea:focus {
-      transform: scale(1.03);
-    }
+    transform: scale(1.03);
   }
 
   .sign-up {
-    border: 3px solid #000;
+    border: 4px solid #000;
     background: #000;
     color: #fff;
-    padding: 10px;
-    font-size: 16px;
+    padding: 12px;
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
-  }
-
-  @media (min-width: 640px) {
-    .sign-up {
-      border-width: 4px;
-      padding: 12px;
-      font-size: 18px;
-    }
   }
 
   .sign-up:hover {
