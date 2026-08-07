@@ -31,16 +31,19 @@ const ContactCard = () => {
 
     try {
       if (scriptUrl) {
-        const bodyData = new FormData()
-        bodyData.append('name', formData.name)
-        bodyData.append('phone', formData.phone)
-        bodyData.append('email', formData.email)
-        bodyData.append('message', formData.message)
-        bodyData.append('timestamp', new Date().toLocaleString())
+        const params = new URLSearchParams()
+        params.append('name', formData.name)
+        params.append('phone', formData.phone)
+        params.append('email', formData.email)
+        params.append('message', formData.message)
+        params.append('timestamp', new Date().toLocaleString())
 
         await fetch(scriptUrl, {
           method: 'POST',
-          body: bodyData,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: params.toString(),
           mode: 'no-cors',
         })
       } else {
